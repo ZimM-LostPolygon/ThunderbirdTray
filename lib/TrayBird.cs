@@ -312,8 +312,8 @@ namespace ThunderbirdTray
                     return true;
                 }
 
-                var classNameBuilder = new StringBuilder();
-                var classNameLength = User32.GetClassName(hWnd, classNameBuilder, int.MaxValue);
+                var classNameBuilder = new StringBuilder(1024);
+                var classNameLength = User32.GetClassName(hWnd, classNameBuilder, classNameBuilder.Capacity);
                 var className = classNameBuilder.ToString();
 
                 if (className != thunderbirdMainWindowClassName)
@@ -321,8 +321,8 @@ namespace ThunderbirdTray
                     return true;
                 }
 
-                var windowTextBuilder = new StringBuilder();
-                var windowTextLength = User32.GetWindowText(hWnd, windowTextBuilder, int.MaxValue);
+                var windowTextBuilder = new StringBuilder(1024);
+                var windowTextLength = User32.GetWindowText(hWnd, windowTextBuilder, windowTextBuilder.Capacity);
                 var windowText = windowTextBuilder.ToString();
 
                 if (!windowText.EndsWith(thunderbirdMainWindowTextEndsWith))
